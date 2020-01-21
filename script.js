@@ -10,6 +10,7 @@
 
 function init () {
     const status = document.querySelector('.status');
+    const title = document.querySelector('.title');
     let json = {}, imgIndex=0;
 
     function success(position) {
@@ -36,6 +37,7 @@ function init () {
         })
         .then((data) => {
             json = data;
+            title.textContent = data.photos.photo[0].title
             const imageUrl = constructImageURL(data.photos.photo[0]);
             displayImage(imageUrl);
         });
@@ -58,6 +60,7 @@ function init () {
         if (imgIndex > 0) {
             imgIndex--;
             displayImage(constructImageURL(json.photos.photo[imgIndex]));
+            title.textContent = json.photos.photo[imgIndex].title;
         }
     }
 
@@ -65,6 +68,7 @@ function init () {
         if (imgIndex < json.photos.photo.length-1) {
             imgIndex++;
             displayImage(constructImageURL(json.photos.photo[imgIndex]))
+            title.textContent = json.photos.photo[imgIndex].title;
         }
     }
 
