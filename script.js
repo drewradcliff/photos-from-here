@@ -5,7 +5,7 @@
 // [x] Process the response data into an object
 // [x] Use the values in the response object to construct an image source URL
 // [x] Display the first image on the page
-// [] In response to some event (e.g. a button click or a setInterval), show the next image in the collection
+// [x] In response to some event (e.g. a button click or a setInterval), show the next image in the collection
 
 
 function init () {
