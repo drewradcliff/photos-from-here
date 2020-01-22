@@ -8,7 +8,7 @@ function init () {
         const longitude = position.coords.longitude;
         status.textContent = `Current Location: ${latitude}, ${longitude}`;
 
-        getJson(latitude, longitude)
+        getJson(assembleSearchURL(latitude, longitude))
     }
 
     function error () {
@@ -17,11 +17,26 @@ function init () {
         const latitude = 37.773972;
         status.textContent = `Could not get location... Showing default location (San Francisco): ${latitude}, ${longitude}`;
 
-        getJson(latitude, longitude)
+        getJson(assembleSearchURL(latitude, longitude))
+    }
+
+    function assembleSearchURL (lat, lon) {
+        const proxy = 'https://shrouded-mountain-15003.herokuapp.com/'
+        return proxy + 
+            `https://flickr.com/services/rest/?` +
+            `api_key=f28f6f6111a311294dc988ab32e57546&` +
+            `format=json&` +
+            `nojsoncallback=1&` +
+            `method=flickr.photos.search&` +
+            `safe_search=1&` +
+            `per_page=5&` +
+            `lat=${lat}&` + 
+            `lon=${lon}&` +
+            `&text=street`
     }
     
-    function getJson (lat, lon) {
-        fetch('https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=f28f6f6111a311294dc988ab32e57546&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=5&lat=' + lat + '&lon=' + lon + '&text=street')
+    function getJson (url) {
+        fetch(url)
         .then((response) => {
             return response.json();
         })
