@@ -12,7 +12,7 @@ function init () {
     }
 
     function error () {
-        // default location set to Indianapolis
+        // default location set to San Francisco
         const longitude = -122.431297;
         const latitude = 37.773972;
         status.textContent = `Could not get location... Showing default location (San Francisco): ${latitude}, ${longitude}`;
