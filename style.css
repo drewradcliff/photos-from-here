@@ -3,13 +3,15 @@
 #wrapper {
     text-align: center;
     font-family: 'Gelasio', serif;
+    width: 100%;
 }
 
 .image {
     border: 1px solid #ddd;
     border-radius: 3px;
     padding: 5px;
-    width: 400px;
+    width: 95%;
+    max-width: 400px;
 }
 
 .title {
@@ -24,6 +26,9 @@ a {
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
+    width: 75px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 a:hover {
