@@ -23,9 +23,9 @@ function init () {
 
     function error () {
         // default location set to Indianapolis
-        const longitude = '39.76574';
-        const latitude = '-86.1579024';
-        status.textContent = `Could not get location... Showing default location: ${latitude}, ${longitude}`;
+        const longitude = -122.431297;
+        const latitude = 37.773972;
+        status.textContent = `Could not get location... Showing default location (San Francisco): ${latitude}, ${longitude}`;
 
         getJson(latitude, longitude)
     }
@@ -33,10 +33,12 @@ function init () {
     function getJson (lat, lon) {
         fetch('https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=f28f6f6111a311294dc988ab32e57546&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=5&lat=' + lat + '&lon=' + lon + '&text=street')
         .then((response) => {
+            console.log(response)
             return response.json();
         })
         .then((data) => {
             json = data;
+            // console.log(json)
             title.textContent = data.photos.photo[0].title
             const imageUrl = constructImageURL(data.photos.photo[0]);
             displayImage(imageUrl);
