@@ -1,13 +1,3 @@
-// TO DO: 
-// [x] Get the geographic location from the browser
-// [x] Construct the query URL
-// [x] Use fetch to send the request to Flickr
-// [x] Process the response data into an object
-// [x] Use the values in the response object to construct an image source URL
-// [x] Display the first image on the page
-// [x] In response to some event (e.g. a button click or a setInterval), show the next image in the collection
-
-
 function init () {
     const status = document.querySelector('.status');
     const title = document.querySelector('.title');
@@ -33,12 +23,10 @@ function init () {
     function getJson (lat, lon) {
         fetch('https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=f28f6f6111a311294dc988ab32e57546&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=5&lat=' + lat + '&lon=' + lon + '&text=street')
         .then((response) => {
-            console.log(response)
             return response.json();
         })
         .then((data) => {
             json = data;
-            // console.log(json)
             title.textContent = data.photos.photo[0].title
             const imageUrl = constructImageURL(data.photos.photo[0]);
             displayImage(imageUrl);
